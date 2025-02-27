@@ -1,18 +1,16 @@
 import Image from 'next/image'
 import { createClient } from '@supabase/supabase-js'
 
-// Correct type definition for Next.js 13+ page props
-type Props = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-export default async function ProductPage({ params, searchParams }: Props) {
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string }
+}) {
   const { data: product, error } = await supabase
     .from('cards')
     .select('*')
