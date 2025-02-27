@@ -7,13 +7,12 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-interface PageProps {
-  params: {
-    id: string
-  }
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-async function ProductPage({ params }: PageProps) {
+export default async function ProductPage({ params }: Props) {
   const { data: product, error } = await supabase
     .from('cards')
     .select('*')
@@ -55,5 +54,3 @@ async function ProductPage({ params }: PageProps) {
     </div>
   )
 }
-
-export default ProductPage
