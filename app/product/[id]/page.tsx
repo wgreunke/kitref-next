@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(
@@ -6,11 +7,13 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-export default async function ProductPage({
-  params
-}: {
-  params: { id: string }
-}) {
+interface PageProps {
+  params: {
+    id: string
+  }
+}
+
+async function ProductPage({ params }: PageProps) {
   const { data: product, error } = await supabase
     .from('cards')
     .select('*')
@@ -27,6 +30,13 @@ export default async function ProductPage({
 
   return (
     <div className="container mx-auto p-4">
+      <Link 
+        href="/" 
+        className="inline-block mb-4 text-blue-600 hover:text-blue-800 hover:underline"
+      >
+        ← Back to Home
+      </Link>
+      
       <h1 className="text-2xl font-bold mb-4">{product.card_title}</h1>
       {product.main_card_image && (
         <Image 
@@ -45,3 +55,5 @@ export default async function ProductPage({
     </div>
   )
 }
+
+export default ProductPage
