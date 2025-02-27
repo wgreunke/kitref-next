@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from 'next/link'
 //Connect to supabase
 import { createClient } from '@supabase/supabase-js'
+
 
 
 //const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -77,46 +77,42 @@ const supabase = createClient(
 */
 
 
-//Get data from supabase
-const { data, error } = await supabase
+//Get the data for a single product
+const product_id = "Weihedesigns_WD-PDDL-3"
+
+// Query single product from Supabase
+const { data: product, error } = await supabase
   .from('cards')
   .select('*')
+  .eq('card_id', product_id)
+  .single() // This ensures we get a single object instead of an array
 
-export default function Home() {
+export default function ProductPage() {
+  if (error) {
+    return <div>Error loading product: {error.message}</div>
+  }
+
+  if (!product) {
+    return <div>Product not found</div>
+  }
+
   return (
     <div>
-      <h3>The best place for Milwaukee Packout Tips and Tricks</h3>
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h2>This is main</h2>
-        {/* Remove or modify this line that's causing the error */}
-        {/* <h2>{data}</h2> */}
-
-        {data?.map((card) => (
-          <Link 
-            href={`/product/${card.card_id}`} 
-            key={card.card_id}
-            className="block hover:shadow-lg transition-shadow duration-200 p-4 rounded-lg"
-          >
-            <div className="card">
-              <h2>{card.card_title}</h2>
-              {/* You can add more card properties here */}
-              <p>{card.card_body}</p>
-              {card.main_card_image && (
-                <Image 
-                  src={card.main_card_image} 
-                  alt={card.card_title || 'Product image'} 
-                  width={200} 
-                  height={200}
-                />
-              )}
-            </div>
-          </Link>
-        ))}
-      </main>
-
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <h2>This is footer</h2>
-      </footer>
+      <h1>{product.card_title}</h1>
+      {product.main_card_image && (
+        <Image 
+          src={product.main_card_image}
+          alt={product.card_title || 'Product image'}
+          width={400}
+          height={400}
+        />
+      )}
+      <p>{product.card_body}</p>
+      <div>
+        <p>Manufacturer: {product.mfg}</p>
+        <p>Model: {product.model_number}</p>
+        {product.mfg_price && <p>Price: ${product.mfg_price}</p>}
+      </div>
     </div>
-  );
+  )
 }
