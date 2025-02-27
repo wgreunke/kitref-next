@@ -7,7 +7,7 @@ const supabase = createClient(
 );
 
 export default async function ProductPage({
-  params,
+  params
 }: {
   params: { id: string }
 }) {
@@ -44,4 +44,4 @@ export default async function ProductPage({
       </div>
     </div>
   )
-} 
+}
