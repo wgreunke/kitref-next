@@ -93,23 +93,11 @@ export default function Home() {
 
         {data?.map((card) => (
           <Link 
-            href={`/product/${card.card_id}`} 
+            href={`/products/${card.card_id}`} 
             key={card.card_id}
-            className="block hover:shadow-lg transition-shadow duration-200 p-4 rounded-lg"
+            className="text-blue-600 hover:underline"
           >
-            <div className="card">
-              <h2>{card.card_title}</h2>
-              {/* You can add more card properties here */}
-              <p>{card.card_body}</p>
-              {card.main_card_image && (
-                <Image 
-                  src={card.main_card_image} 
-                  alt={card.card_title || 'Product image'} 
-                  width={200} 
-                  height={200}
-                />
-              )}
-            </div>
+            {card.card_title}
           </Link>
         ))}
       </main>
