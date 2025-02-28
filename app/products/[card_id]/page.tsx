@@ -4,13 +4,14 @@ import { createClient } from '@supabase/supabase-js'
 export default async function ProductPage({
   params,
 }: {
-  params: { card_id: string };
+  params: Promise<{ card_id: string }>;
 }) {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-  
+  const { card_id } = await params;
+
   // Fetch the specific card data
   const { data: card, error } = await supabase
     .from('cards')
