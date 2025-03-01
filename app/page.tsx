@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from 'next/link'
 //Connect to supabase
 import { createClient } from '@supabase/supabase-js'
@@ -10,6 +9,15 @@ import { createClient } from '@supabase/supabase-js'
 
 if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
   throw new Error('Missing environment variables for Supabase test');
+}
+
+async function getCards() {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  );
+  const { data, error } = await supabase.from('cards').select('*');
+  return data;
 }
 
 const supabase = createClient(
@@ -82,7 +90,8 @@ const { data, error } = await supabase
   .from('cards')
   .select('*')
 
-export default function Home() {
+export default async function Home() {
+  const data = await getCards();
   return (
     <div>
       <h3>The best place for Milwaukee Packout Tips and Tricks</h3>
