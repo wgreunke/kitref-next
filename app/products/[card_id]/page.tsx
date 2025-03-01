@@ -2,9 +2,9 @@ import React from 'react';
 import { createClient } from '@supabase/supabase-js'
 
 
-export default async function ProductPage(props: { params: { card_id: string } }) {
-     const { params } = props; // <-- Ensure `params` is extracted properly
-     console.log("Params received:", params); // Debugging
+export default async function ProductPage( { params }: {params: { card_id: string } }) {
+    const { card_id } = params;
+     console.log("Params received:", card_id); // Debugging
    
 
 
@@ -19,7 +19,7 @@ export default async function ProductPage(props: { params: { card_id: string } }
   const { data: card, error } = await supabase
     .from('cards')
     .select('*')
-    .eq('card_id', params.card_id)
+    .eq('card_id', card_id)
     .single();
 
   if (error) {
