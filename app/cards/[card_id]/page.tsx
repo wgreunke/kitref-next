@@ -5,4 +5,4 @@ export default async function Page({
   }) {
     const card_id = (await params).card_id
     return <div>My Post: {card_id}</div>
-  }
+  } 
