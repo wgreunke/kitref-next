@@ -24,8 +24,26 @@ export default async function Page({
 
   return (
     <div>
+      <a href="/" className="text-blue-600 hover:underline">Home</a>
+      <br></br>
+      <p className="text-xl font-bold mb-2">Manufacturer - {card.mfg} : {card.model_number}</p>
+      <p>Type: {card.card_type}</p>
+
+
       <h1>{card.card_title}</h1>
-      <p>{card.card_description}</p>
+      <p>{card.card_body}</p>
+      {card.main_url && (
+        <a 
+          href={card.main_url} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-blue-600 hover:underline"
+        >
+          Visit {card.mfg}
+        </a>
+      )}
+      <p>{card.type}</p>
+      <p>Price:${card.mfg_price}</p>
     </div>
   )
 }
