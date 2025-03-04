@@ -91,28 +91,37 @@ const { data, error } = await supabase
 
 export default async function Home() {
   const data = await getCards();
+
+  // First, organize the cards by manufacturer
+  const groupedByMfg = data.reduce((acc, card) => {
+    const mfg = card.mfg || 'Other';
+    if (!acc[mfg]) {
+      acc[mfg] = [];
+    }
+    acc[mfg].push(card);
+    return acc;
+  }, {} as Record<string, typeof data>);
+
   return (
-    <div>
-      <h3>The best place for Milwaukee Packout Tips and Tricks</h3>
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h2>This is main</h2>
-        {/* Remove or modify this line that's causing the error */}
-        {/* <h2>{data}</h2> */}
-
-        {data?.map((card) => (
-          <Link 
-            href={`/products/${card.card_id}`} 
-            key={card.card_id}
-            className="text-blue-600 hover:underline"
-          >
-            {card.card_title}
-          </Link>
-        ))}
-      </main>
-
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <h2>This is footer</h2>
-      </footer>
+    <div className="p-4">
+      {Object.entries(groupedByMfg).sort().map(([mfg, mfgCards]) => (
+        <div key={mfg} className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">{mfg}</h2>
+          <div className="ml-4">
+            {mfgCards
+              .sort((a, b) => (a.card_title || '').localeCompare(b.card_title || ''))
+              .map(card => (
+                <Link 
+                  href={`/products/${card.card_id}`} 
+                  key={card.card_id}
+                  className="text-blue-600 hover:underline block mb-2"
+                >
+                  {card.card_title}
+                </Link>
+              ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
