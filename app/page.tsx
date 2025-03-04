@@ -93,7 +93,7 @@ export default async function Home() {
   const data = await getCards();
 
   // First, organize the cards by manufacturer
-  const groupedByMfg = data.reduce((acc, card) => {
+  const groupedByMfg = (data || []).reduce((acc, card) => {
     const mfg = card.mfg || 'Other';
     if (!acc[mfg]) {
       acc[mfg] = [];
