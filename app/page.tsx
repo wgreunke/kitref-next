@@ -92,6 +92,14 @@ const { data, error } = await supabase
 export default async function Home() {
   const data = await getCards();
 
+  // Define the card type
+  type Card = {
+    card_id: string;
+    mfg: string;
+    card_title: string;
+    // add other fields as needed
+  };
+
   // First, organize the cards by manufacturer
   const groupedByMfg = (data || []).reduce((acc, card) => {
     const mfg = card.mfg || 'Other';
@@ -100,7 +108,7 @@ export default async function Home() {
     }
     acc[mfg].push(card);
     return acc;
-  }, {} as Record<string, typeof data>);
+  }, {} as Record<string, Card[]>);
 
   return (
     <div className="p-4">
