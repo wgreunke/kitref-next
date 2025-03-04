@@ -101,18 +101,18 @@ export default async function Home() {
   };
 
   // First, organize the cards by manufacturer
-  const groupedByMfg = (data || []).reduce((acc, card) => {
+  const groupedByMfg = (data || []).reduce<Record<string, Card[]>>((acc, card) => {
     const mfg = card.mfg || 'Other';
     if (!acc[mfg]) {
       acc[mfg] = [];
     }
     acc[mfg].push(card);
     return acc;
-  }, {} as Record<string, Card[]>);
+  }, {});
 
   return (
     <div className="p-4">
-      {Object.entries(groupedByMfg).sort().map(([mfg, mfgCards]) => (
+      {(Object.entries(groupedByMfg) as [string, Card[]][]).sort().map(([mfg, mfgCards]) => (
         <div key={mfg} className="mb-8">
           <h2 className="text-2xl font-bold mb-4">{mfg}</h2>
           <div className="ml-4">
