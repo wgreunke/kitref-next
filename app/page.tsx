@@ -92,12 +92,12 @@ const { data, error } = await supabase
 export default async function Home() {
   const data = await getCards();
 
-  // Define the card type
+  // Define the card type with all required fields
   type Card = {
     card_id: string;
     mfg: string;
     card_title: string;
-    // add other fields as needed
+    model_number?: string;  // Added this field as optional
   };
 
   // First, organize the cards by manufacturer
