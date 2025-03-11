@@ -116,16 +116,21 @@ export default async function Home() {
         <div key={mfg} className="mb-8">
           <h2 className="text-2xl font-bold mb-4">{mfg}</h2>
           <div className="ml-4">
+            
             {mfgCards
               .sort((a, b) => (a.card_title || '').localeCompare(b.card_title || ''))
               .map(card => (
-                <Link 
-                  href={`/products/${card.card_id}`} 
-                  key={card.card_id}
-                  className="text-blue-600 hover:underline block mb-2"
-                >
-                  {card.card_title}
-                </Link>
+                <div key={card.card_id} className="mb-2">
+                  {card.model_number && (
+                    <span className="mr-2">{card.model_number}:</span>
+                  )}
+                  <Link 
+                    href={`/products/${card.card_id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {card.card_title}
+                  </Link>
+                </div>
               ))}
           </div>
         </div>
