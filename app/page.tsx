@@ -102,7 +102,7 @@ export default async function Home({
     if (!acc[mfg]) {
       acc[mfg] = [];
     }
-    acc[mfg].push(card);
+    acc[mfg].push(card); 
     return acc;
   }, {} as Record<string, typeof filteredData>);
 
@@ -114,13 +114,13 @@ export default async function Home({
         <div className="flex flex-col gap-2">
           <Link 
             href="/?family=m12" 
-            className={`text-blue-600 hover:underline ${selectedFamily === 'm12' ? 'font-bold' : ''}`}
+            className={`text-blue-600 hover:underline ${selectedFamily === 'M12' ? 'font-bold' : ''}`}
           >
             M12
           </Link>
           <Link 
             href="/?family=m18" 
-            className={`text-blue-600 hover:underline ${selectedFamily === 'm18' ? 'font-bold' : ''}`}
+            className={`text-blue-600 hover:underline ${selectedFamily === 'M18' ? 'font-bold' : ''}`}
           >
             M18
           </Link>
@@ -132,7 +132,7 @@ export default async function Home({
           </Link>
           <Link 
             href="/?family=m12-m18" 
-            className={`text-blue-600 hover:underline ${selectedFamily === 'm12-m18' ? 'font-bold' : ''}`}
+            className={`text-blue-600 hover:underline ${selectedFamily === 'M12/M18' ? 'font-bold' : ''}`}
           >
             M12/M18
           </Link>
