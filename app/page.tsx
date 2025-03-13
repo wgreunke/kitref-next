@@ -107,63 +107,90 @@ export default async function Home({
   }, {} as Record<string, typeof filteredData>);
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <div className="w-64 p-4 border-r min-h-screen">
-        <h2 className="text-2xl font-bold mb-4">Categories</h2>
-        <div className="flex flex-col gap-2">
-          <Link 
-            href="/?family=M12" 
-            className={`text-blue-600 hover:underline ${selectedFamily === 'M12' ? 'font-bold' : ''}`}
-          >
-            M12
-          </Link>
-          <Link 
-            href="/?family=M18" 
-            className={`text-blue-600 hover:underline ${selectedFamily === 'M18' ? 'font-bold' : ''}`}
-          >
-            M18
-          </Link>
-          <Link 
-            href="/?family=Milwaukee Packout" 
-            className={`text-blue-600 hover:underline ${selectedFamily === 'Milwaukee Packout' ? 'font-bold' : ''}`}
-          >
-            Milwaukee Packout
-          </Link>
-          <Link 
-            href="/?family=M12/M18" 
-            className={`text-blue-600 hover:underline ${selectedFamily === 'M12/M18' ? 'font-bold' : ''}`}
-          >
-            M12/M18
-          </Link>
+    <div className="flex flex-col min-h-screen">
+      {/* Top bars */}
+      <div className="flex flex-col">
+        {/* Text bar */}
+        <div className="bg-red-700 text-white p-4 flex justify-center">
+          <h1 className="text-2xl font-bold">KitRef</h1>
+        </div>
+
+        {/* Image bar */}
+        <div className="bg-white p-4 flex justify-center">
+          <img 
+            src="/hero.png" 
+            alt="KitRef Hero" 
+            className="h-24 w-auto"
+          />
+        </div>
+
+        {/* Tagline bar */}
+        <div className="bg-white p-4 flex justify-center border-b">
+          <p className="text-sm font-bold">
+            Linking the ecosystem of Milwaukee tools, storage and accessories
+          </p>
         </div>
       </div>
 
-      {/* Main content */}
-      <div className="flex-1 p-4">
-        <h1 className="text-3xl font-bold mb-6">{selectedFamily.toUpperCase()} Products</h1>
-        {(Object.entries(groupedByMfg) as [string, typeof filteredData][]).sort().map(([mfg, mfgCards]) => (
-          <div key={mfg} className="mb-8">
-            <h2 className="text-2xl font-bold mb-4">{mfg}</h2>
-            <div className="ml-4">
-              {(mfgCards || [])
-                .sort((a, b) => (a.card_title || '').localeCompare(b.card_title || ''))
-                .map(card => (
-                  <div key={card.card_id} className="mb-2">
-                    {card.model_number && (
-                      <span className="mr-2">{card.model_number}:</span>
-                    )}
-                    <Link 
-                      href={`/products/${card.card_id}`}
-                      className="text-blue-600 hover:underline"
-                    >
-                      {card.card_title}
-                    </Link>
-                  </div>
-                ))}
-            </div>
+      {/* Main content with sidebar */}
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <div className="w-64 p-4 border-r min-h-screen">
+          <h4 className="text-2xl font-bold mb-4">Categories</h4>
+          <div className="flex flex-col gap-2">
+            <Link 
+              href="/?family=M12" 
+              className={`text-blue-600 hover:underline ${selectedFamily === 'M12' ? 'font-bold' : ''}`}
+            >
+              M12
+            </Link>
+            <Link 
+              href="/?family=M18" 
+              className={`text-blue-600 hover:underline ${selectedFamily === 'M18' ? 'font-bold' : ''}`}
+            >
+              M18
+            </Link>
+            <Link 
+              href="/?family=Milwaukee Packout" 
+              className={`text-blue-600 hover:underline ${selectedFamily === 'Milwaukee Packout' ? 'font-bold' : ''}`}
+            >
+              Milwaukee Packout
+            </Link>
+            <Link 
+              href="/?family=M12/M18" 
+              className={`text-blue-600 hover:underline ${selectedFamily === 'M12/M18' ? 'font-bold' : ''}`}
+            >
+              M12/M18
+            </Link>
           </div>
-        ))}
+        </div>
+
+        {/* Main content */}
+        <div className="flex-1 p-4">
+          <h1 className="text-3xl font-bold mb-6">{selectedFamily.toUpperCase()} Products</h1>
+          {(Object.entries(groupedByMfg) as [string, typeof filteredData][]).sort().map(([mfg, mfgCards]) => (
+            <div key={mfg} className="mb-8">
+              <h2 className="text-2xl font-bold mb-4">{mfg}</h2>
+              <div className="ml-4">
+                {(mfgCards || [])
+                  .sort((a, b) => (a.card_title || '').localeCompare(b.card_title || ''))
+                  .map(card => (
+                    <div key={card.card_id} className="mb-2">
+                      {card.model_number && (
+                        <span className="mr-2">{card.model_number}:</span>
+                      )}
+                      <Link 
+                        href={`/products/${card.card_id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {card.card_title}
+                      </Link>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
