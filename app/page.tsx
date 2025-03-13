@@ -135,7 +135,7 @@ export default async function Home({
       {/* Main content with sidebar */}
       <div className="flex flex-1">
         {/* Sidebar */}
-        <div className="w-64 p-4 border-r min-h-screen">
+        <div className="w-64 p-4 border-r-2 border-red-700 min-h-screen">
           <h4 className="text-2xl font-bold mb-4">Categories</h4>
           <div className="flex flex-col gap-2">
             <Link 
