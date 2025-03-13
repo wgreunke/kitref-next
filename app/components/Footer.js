@@ -7,8 +7,18 @@ export default function Footer() {
         <Link href="/" className="text-blue-600 hover:underline">
           Home
         </Link>
+        
         <Link href="/about" className="text-blue-600 hover:underline">
           About
+        </Link>
+
+        <Link 
+          href="https://forms.gle/FR8BU4oB6TYeVjC47" 
+          className="text-blue-600 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Contact Us
         </Link>
       </div>
     </footer>

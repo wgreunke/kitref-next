@@ -127,7 +127,7 @@ export default async function Home({
         {/* Tagline bar */}
         <div className="bg-white p-4 flex justify-center border-b">
           <p className="text-sm font-bold text-center max-w-md">
-            Linking the ecosystem of Milwaukee Tools, Storage and Accessories
+            Linking the Ecosystem of Milwaukee Tools, Storage and Accessories
           </p>
         </div>
       </div>
@@ -136,7 +136,7 @@ export default async function Home({
       <div className="flex flex-1">
         {/* Sidebar */}
         <div className="w-64 p-4 border-r min-h-screen">
-          <h4 className="text-lg font-bold mb-4">Categories</h4>
+          <h4 className="text-2xl font-bold mb-4">Categories</h4>
           <div className="flex flex-col gap-2">
             <Link 
               href="/?family=M12" 

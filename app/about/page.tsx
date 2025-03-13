@@ -5,10 +5,14 @@ export default function About() {
       
       <div className="prose max-w-none">
         <p className="mb-4">
-          Welcome to KitRef, your comprehensive reference for electronic kits and components. 
-          Our mission is to provide a centralized resource for electronics enthusiasts, 
-          makers, and professionals to find detailed information about various electronic kits 
-          and their manufacturers.
+
+          
+          
+          
+        Milwaukee tools are seen on every jobsite and are carried in the ubiquitous red Packout rolling tool boxes.  This combination has unleashed a flurry of creativity from the 3d printing world to create a wide range of organizers, accessories and storage solutions.
+<p></p>
+<br></br>
+<p>KitRef’s mission is to connect you with the ever growing selection of accessories and solutions so you can find what you need and get the job done.</p>
         </p>
 
         <h2 className="text-2xl font-bold mt-6 mb-4">What We Offer</h2>
@@ -20,8 +24,7 @@ export default function About() {
         </ul>
 
         <p className="mt-4">
-          This site is maintained as a reference resource for the electronics community. 
-          All product information is sourced directly from manufacturers.
+          KitRef is not affiliated with Milwaukee or any of its products.
         </p>
       </div>
     </div>
