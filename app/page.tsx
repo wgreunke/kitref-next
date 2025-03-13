@@ -113,13 +113,13 @@ export default async function Home({
         <h2 className="text-2xl font-bold mb-4">Categories</h2>
         <div className="flex flex-col gap-2">
           <Link 
-            href="/?family=m12" 
+            href="/?family=M12" 
             className={`text-blue-600 hover:underline ${selectedFamily === 'M12' ? 'font-bold' : ''}`}
           >
             M12
           </Link>
           <Link 
-            href="/?family=m18" 
+            href="/?family=M18" 
             className={`text-blue-600 hover:underline ${selectedFamily === 'M18' ? 'font-bold' : ''}`}
           >
             M18
@@ -131,7 +131,7 @@ export default async function Home({
             Milwaukee Packout
           </Link>
           <Link 
-            href="/?family=m12-m18" 
+            href="/?family=M12/M18" 
             className={`text-blue-600 hover:underline ${selectedFamily === 'M12/M18' ? 'font-bold' : ''}`}
           >
             M12/M18
