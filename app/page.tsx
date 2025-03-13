@@ -146,7 +146,7 @@ export default async function Home({
           <div key={mfg} className="mb-8">
             <h2 className="text-2xl font-bold mb-4">{mfg}</h2>
             <div className="ml-4">
-              {mfgCards
+              {(mfgCards || [])
                 .sort((a, b) => (a.card_title || '').localeCompare(b.card_title || ''))
                 .map(card => (
                   <div key={card.card_id} className="mb-2">
