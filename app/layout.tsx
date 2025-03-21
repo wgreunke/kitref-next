@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import { Analytics } from "@vercel/analytics/react"
 //https://vercel.com/docs/analytics/quickstart#add-the-analytics-component-to-your-app
 
-
+ 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
