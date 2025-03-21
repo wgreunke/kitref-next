@@ -95,14 +95,15 @@ export default async function Home({
   const { data: filteredData, error: filteredError } = await supabase
     .from('cards')
     .select('*')
-    .eq('card_family', selectedFamily);
+    .eq('card_family', selectedFamily)
+    .eq('mfg', 'Milwaukee');
 
   const groupedByMfg = (filteredData || []).reduce((acc, card) => {
-    const mfg = card.mfg || 'Other';
-    if (!acc[mfg]) {
-      acc[mfg] = [];
+    const card_group = card.card_group || 'Other';
+    if (!acc[card_group]) {
+      acc[card_group] = [];
     }
-    acc[mfg].push(card); 
+    acc[card_group].push(card); 
     return acc;
   }, {} as Record<string, typeof filteredData>);
 
