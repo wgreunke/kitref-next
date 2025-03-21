@@ -136,7 +136,7 @@ export default async function Home({
       <div className="flex flex-1">
         {/* Sidebar */}
         <div className="w-64 p-4 border-r-2 border-red-700 min-h-screen">
-          <h4 className="text-2xl font-bold mb-4">Categories</h4>
+          <h4 className="text-2xl font-bold mb-4">Milwaukee Product Families</h4>
           <div className="flex flex-col gap-2">
             <Link 
               href="/?family=M12" 
@@ -152,7 +152,7 @@ export default async function Home({
             </Link>
             <Link 
               href="/?family=Milwaukee Packout" 
-              className={`text-blue-600 hover:underline ${selectedFamily === 'Milwaukee Packout' ? 'font-bold' : ''}`}
+              className={`text-blue-600 hover:underline ${selectedFamily === 'Packout' ? 'font-bold' : ''}`}
             >
               Milwaukee Packout
             </Link>
