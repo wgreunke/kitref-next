@@ -89,7 +89,7 @@ export default async function Home({
   searchParams: Promise<{ family?: string }>;
 }) {
   const params = await searchParams;
-  const selectedFamily = params.family || 'Milwaukee Packout';
+  const selectedFamily = params.family || 'Packout';
 
   // Fetch cards filtered by family
   const { data: filteredData, error: filteredError } = await supabase
@@ -136,7 +136,7 @@ export default async function Home({
       <div className="flex flex-1">
         {/* Sidebar */}
         <div className="w-64 p-4 border-r-2 border-red-700 min-h-screen">
-          <h4 className="text-2xl font-bold mb-4">Milwaukee Product Families</h4>
+          <h4 className="text-2xl font-bold mb-4">Products</h4>
           <div className="flex flex-col gap-2">
             <Link 
               href="/?family=M12" 
@@ -151,10 +151,10 @@ export default async function Home({
               M18
             </Link>
             <Link 
-              href="/?family=Milwaukee Packout" 
+              href="/?family=Packout" 
               className={`text-blue-600 hover:underline ${selectedFamily === 'Packout' ? 'font-bold' : ''}`}
             >
-              Milwaukee Packout
+              Packout
             </Link>
             <Link 
               href="/?family=M12/M18" 
