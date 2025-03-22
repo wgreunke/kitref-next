@@ -64,8 +64,17 @@ export default async function Page({
           </a>
         )}
         <p>{card.type}</p>
-        <p>Price:${card.mfg_price}</p>
+        
+        <hr className="border-red-700" style={{ marginTop: '10px', marginBottom: '10px' }}></hr> 
+        
+      <Link 
+        href={`https://kitref.streamlit.app/?page_action=edit_card&card_id=${card_id}`} 
+        className="text-blue-600 hover:underline"
+      >
+        EditCard
+      </Link>
       </div>
+      
     </div>
   )
 }

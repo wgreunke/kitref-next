@@ -164,6 +164,10 @@ export default async function Home({
               M12/M18
             </Link>
           </div>
+          <br></br>
+          <hr className="border-red-700"></hr>
+          <br></br>
+          <Link href="https://kitref.streamlit.app/" className="text-blue-600 hover:underline">Add New Card</Link>
         </div>
 
         {/* Main content */}
