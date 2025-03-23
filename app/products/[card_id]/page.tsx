@@ -1,15 +1,15 @@
 import { createClient } from '@supabase/supabase-js'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-export default async function Page({
-  params,
-}: {
+export default async function Page({  params,}: {
   params: Promise<{ card_id: string }>
-}) {
+}) 
+{
   const card_id = (await params).card_id
 
   const { data: card, error } = await supabase
@@ -23,58 +23,82 @@ export default async function Page({
     return <div>Error loading card</div>
   }
 
-  
 
+  const { data: child_cards, error: child_cards_error } = await supabase
+  .from('child_cards')
+  .select('*')
+  .eq('parent_card', card_id);
 
+if (child_cards_error) {
+  return <div>Error loading parents: {child_cards_error.message}</div>;
+}
 
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Top bars */}
+      {/* Header Section */}
       <div className="flex flex-col">
-        {/* Text bar */}
         <div className="bg-red-700 text-white p-4 flex justify-center">
           <h1 className="text-2xl font-bold">KitRef</h1>
         </div>
-
-
       </div>
 
-      {/* Main content */}
+      {/* Main Content Container */}
       <div className="container mx-auto p-4">
+        {/* Back to Home Link */}
         <Link 
           href="/" 
           className="inline-block mb-4 text-blue-600 hover:text-blue-800 hover:underline"
         >
           ← Back to Home
         </Link>
-        
-        <h1 className="text-2xl font-bold mb-4">{card.card_title}</h1>
-        <p className="text-xl font-bold mb-2">Manufacturer - {card.mfg} : {card.model_number}</p>
-        <p>Type: {card.card_type}</p>
-        <p>{card.card_body}</p>
-        {card.main_url && (
-          <a 
-            href={card.main_url} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-blue-600 hover:underline"
-          >
-            Visit {card.mfg}
-          </a>
+
+        {/* Product Details */}
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold mb-4">{card.card_title}</h1>
+         
+          <p className="mb-4">{card.card_body}</p>
+          <div className="space-y-2">
+            <p>Manufacturer: {card.mfg}</p>
+            <p>Model: {card.model_number}</p>
+            {card.mfg_price && <p>Price: ${card.mfg_price}</p>}
+          </div>
+        </div>
+
+        {/* Child Cards Section */}
+        {child_cards && child_cards.length > 0 ? (
+          <div className="mt-8">
+            <h2 className="text-xl font-bold mb-4">Related Products</h2>
+            <div className="grid gap-4">
+              {child_cards.map((child) => (
+                <div key={child.child_card}>
+                  <Link 
+                    href={`/products/${child.child_card}`}
+                    className="flex items-center gap-4"
+                  >
+                   
+                    <div>
+                      <h3 className="font-semibold text-lg text-red-700">
+                        {child.child_card}
+                      </h3>
+                      {child.model_number && (
+                        <p className="text-gray-600">Model: {child.model_number}</p>
+                      )}
+                      {child.mfg_price && (
+                        <p className="text-gray-800">${child.mfg_price.toFixed(2)}</p>
+                      )}
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+            <p className="text-gray-600">No related products found</p>
+          </div>
         )}
-        <p>{card.type}</p>
-        
-        <hr className="border-red-700" style={{ marginTop: '10px', marginBottom: '10px' }}></hr> 
-        
-      <Link 
-        href={`https://kitref.streamlit.app/?page_action=edit_card&card_id=${card_id}`} 
-        className="text-blue-600 hover:underline"
-      >
-        EditCard
-      </Link>
       </div>
-      
     </div>
   )
 }
