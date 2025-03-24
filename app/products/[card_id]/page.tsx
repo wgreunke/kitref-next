@@ -1,6 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -89,6 +88,9 @@ if (child_cards_error) {
                       )}
                     </div>
                   </Link>
+                  <p>Title: {child.card_title}</p>
+                  <p>Body: {child.card_body}</p>
+                  
                 </div>
               ))}
             </div>
@@ -98,6 +100,8 @@ if (child_cards_error) {
             <p className="text-gray-600">No related products found</p>
           </div>
         )}
+
+       
       </div>
     </div>
   )
