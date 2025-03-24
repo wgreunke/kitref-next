@@ -5,6 +5,14 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+const RunEmbedCode = ({ embedCode }: { embedCode: string }) => {
+  return (
+    <div>
+      <p>Embed Code:</p>
+    </div>
+  );
+};
+
 export default async function Page({  params,}: {
   params: Promise<{ card_id: string }>
 }) 
@@ -21,6 +29,7 @@ export default async function Page({  params,}: {
     console.error('Error fetching card:', error.message)
     return <div>Error loading card</div>
   }
+
 
 
   const { data: child_cards, error: child_cards_error } = await supabase
@@ -60,8 +69,9 @@ if (child_cards_error) {
           <div className="space-y-2">
             <p>Manufacturer: {card.mfg}</p>
             <p>Model: {card.model_number}</p>
-            {card.mfg_price && <p>Price: ${card.mfg_price}</p>}
-          </div>
+            <p><Link className="text-blue-600 hover:text-blue-800 hover:underline"
+            href={`${card.main_url}`} target="_blank" rel="noopener noreferrer">Link to page</Link></p>
+           </div>
         </div>
 
         {/* Child Cards Section */}
@@ -83,14 +93,13 @@ if (child_cards_error) {
                       {child.model_number && (
                         <p className="text-gray-600">Model: {child.model_number}</p>
                       )}
-                      {child.mfg_price && (
-                        <p className="text-gray-800">${child.mfg_price.toFixed(2)}</p>
-                      )}
                     </div>
                   </Link>
                   <p>Title: {child.card_title}</p>
-                  <p>Body: {child.card_body}</p>
-                  
+                  <p> {child.card_body}</p>
+                  <RunEmbedCode embed_code={child.embed_code} />
+
+
                 </div>
               ))}
             </div>
@@ -101,7 +110,9 @@ if (child_cards_error) {
           </div>
         )}
 
-       
+        {card.embed_code && (
+          <EmbedCode embedCode={card.embed_code} />
+        )}
       </div>
     </div>
   )

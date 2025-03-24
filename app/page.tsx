@@ -158,10 +158,10 @@ export default async function Home({
               Packout
             </Link>
             <Link 
-              href="/?family=M12/M18" 
-              className={`text-blue-600 hover:underline ${selectedFamily === 'M12/M18' ? 'font-bold' : ''}`}
+              href="/?family=M18 / M12" 
+              className={`text-blue-600 hover:underline ${selectedFamily === 'M18 / M12' ? 'font-bold' : ''}`}
             >
-              M12/M18
+              M18/M12
             </Link>
           </div>
           <br></br>
