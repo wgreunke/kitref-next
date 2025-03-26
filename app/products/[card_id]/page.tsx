@@ -97,7 +97,6 @@ if (child_cards_error) {
                   </Link>
                   <p>Title: {child.card_title}</p>
                   <p> {child.card_body}</p>
-                  <RunEmbedCode embed_code={child.embed_code} />
 
 
                 </div>
@@ -110,9 +109,6 @@ if (child_cards_error) {
           </div>
         )}
 
-        {card.embed_code && (
-          <EmbedCode embedCode={card.embed_code} />
-        )}
       </div>
     </div>
   )
