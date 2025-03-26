@@ -12,7 +12,7 @@ const RunEmbedCode = ({ embedCode }: { embedCode: string }) => {
     </div>
   );
 };
-
+ 
 export default async function Page({  params,}: {
   params: Promise<{ card_id: string }>
 }) 
