@@ -110,6 +110,8 @@ if (child_cards_error) {
         )}
 
       </div>
+      <p>Associate Existing cards</p>
+      
     </div>
   )
 }
