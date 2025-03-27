@@ -110,7 +110,8 @@ if (child_cards_error) {
         )}
 
       </div>
-      <p>Associate Existing cards</p>
+        <p>Associate Existing cards</p>
+        <Link className="text-blue-600 hover:text-blue-800 hover:underline" href={`/associate?card_id=${card_id}`}>Add a child card.</Link>
       
     </div>
   )
