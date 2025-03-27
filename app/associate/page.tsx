@@ -6,19 +6,11 @@
 //This is a hack because it loads all cards on the server side.
 'use client'
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 export default function AssociateCards() {
-  const searchParams = useSearchParams();
-  const card_id = searchParams.get('card_id');
-  const [data, setData] = useState(null);
+  const searchParams = useSearchParams()
+  const card_id = searchParams.get('card_id')
 
-  useEffect(() => {
-    async function fetchData() {
-      // Your async operations here
-    }
-    fetchData();
-  }, [card_id]);
 
   return (
     <div>
