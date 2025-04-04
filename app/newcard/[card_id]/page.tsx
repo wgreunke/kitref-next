@@ -5,6 +5,9 @@
 //Add the card and and create the association betwen the parent and child.
 
 import { createClient } from '@supabase/supabase-js'
+import NewCardComponent from "../../components/NewCardComponent"
+
+
 
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -17,6 +20,7 @@ export default function NewCard({ params }: { params: { card_id: string } }) {
     return (
         <div>
             <p>Card ID: {params.card_id}</p>
+            <NewCardComponent cardId={params.card_id} />
         </div>
     );
 }
