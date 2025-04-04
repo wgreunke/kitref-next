@@ -120,7 +120,11 @@ if (child_cards_error) {
         >
           Add different card
         </a>
-
+<p>This is the card id:</p>
+   <p></p>
+   <br/>
+   <p></p>
+   <p>{card_id}</p>
     </div>
   )
 }
