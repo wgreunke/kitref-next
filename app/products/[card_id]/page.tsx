@@ -111,14 +111,14 @@ if (child_cards_error) {
 
       </div>
         <p>Associate Existing cards</p>
-        <Link className="text-blue-600 hover:text-blue-800 hover:underline" href={`/associate?card_id=${card_id}`}>Add a child card.</Link>
+        <Link className="text-blue-600 hover:text-blue-800 hover:underline" href={`/newcard/${card_id}`}>Add a child card.</Link>
         <a 
           href={`https://kitref-child.streamlit.app?page_action=show_card_list&parent_card_id=${card_id}`} 
           className="text-blue-600 hover:text-blue-800 hover:underline"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Add a child card. ST
+          Add different card
         </a>
 
     </div>
