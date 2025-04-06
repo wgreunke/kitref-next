@@ -16,11 +16,12 @@ const supabase = createClient(
 
 
 // Ensure this is a Server Component
-export default function NewCard({ params }: { params: { card_id: string } }) {
+export default async function NewCard({ params }: { params: { card_id: string } }) {
+    const {card_id} = await params;
     return (
         <div>
             <p>Card ID: {params.card_id}</p>
-            <NewCardComponent cardId={params.card_id} />
+            <NewCardComponent cardId={card_id} />
         </div>
     );
 }
