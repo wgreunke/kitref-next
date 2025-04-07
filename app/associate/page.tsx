@@ -65,8 +65,12 @@ function AssociateCardsContent() {
 
       if (error) throw error;
       window.location.href = `/products/${card_id}`;
-    } catch (err) {
-      console.error('Error setting child card:', err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error('Error setting child card:', err.message);
+      } else {
+        console.error('An unknown error occurred');
+      }
     }
   };
 
