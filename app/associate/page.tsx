@@ -14,11 +14,18 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+// Add proper type for your cards
+interface Card {
+    // Add the properties your card has, for example:
+    id: string;
+    name: string;
+    // ... other properties
+}
 
 function AssociateCardsContent() {
   const searchParams = useSearchParams();
   const card_id = searchParams.get('card_id');
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
