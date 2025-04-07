@@ -31,9 +31,9 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                 <label htmlFor="card_name" className="block text-sm font-medium text-gray-700 mb-2">Card Name</label>
                 <input 
                     type="text" 
-                    name="card_name" 
+                    name="card_title" 
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                    placeholder="Enter card name"
+                    placeholder="Enter card title"
                 /> 
             </div>
             <input type="hidden" name="parent_card_id" defaultValue={cardId} />
