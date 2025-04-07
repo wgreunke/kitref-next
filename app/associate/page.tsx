@@ -53,7 +53,7 @@ function AssociateCardsContent() {
     fetchCards();
   }, []);
 
-  const setChildCard = async (child_card) => {
+  const setChildCard = async (child_card: string) => {
     try {
       const { error } = await supabase
         .from('child_cards')
