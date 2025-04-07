@@ -42,6 +42,10 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                 <p aria-live="polite" className="sr-only" role="status">
                 {state?.message}
       </p>
+      <p>
+        {JSON.stringify(state)}
+      </p>
+      <p>Message should be above</p>
             </div>
         </form>
         </div>
