@@ -27,7 +27,7 @@ function AssociateCardsContent() {
   const card_id = searchParams.get('card_id');
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchCards() {
@@ -39,8 +39,12 @@ function AssociateCardsContent() {
 
         if (error) throw error;
         setCards(data || []);
-      } catch (err) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred');
+        }
       } finally {
         setLoading(false);
       }
