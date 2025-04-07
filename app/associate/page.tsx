@@ -9,11 +9,11 @@ import { Suspense } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 
 function AssociateCardsContent() {
   const searchParams = useSearchParams();
