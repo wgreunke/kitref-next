@@ -3,7 +3,6 @@ import  {useActionState} from "react"
 import { useFormStatus } from "react-dom"
 import {createCardAction} from "@/app/actions"
 
-
 const initialState = {message: ""};
 
 function SubmitButton() {
@@ -17,7 +16,6 @@ function SubmitButton() {
     </button>
 }
 
-
 export function NewCardComponent({ cardId }: { cardId: string }) {
     const [state, formAction] = useActionState(createCardAction, initialState)
 
@@ -28,13 +26,54 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
             <br/>
         <form action={formAction} className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto">
             <div className="mb-4">
-                <label htmlFor="card_name" className="block text-sm font-medium text-gray-700 mb-2">Card Name</label>
+                <label htmlFor="mfg_name" className="block text-sm font-medium text-gray-700 mb-2">Mfg Name</label>
+                <input 
+                    type="text" 
+                    name="mfg_name" 
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                    placeholder="Enter mfg name"
+                />
+                <label htmlFor="model_number" className="block text-sm font-medium text-gray-700 mb-2">Model Number</label>
+                <input 
+                    type="text" 
+                    name="model_number" 
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                    placeholder="Enter model number"
+                />
+                <label htmlFor="card_title" className="block text-sm font-medium text-gray-700 mb-2">Card Name</label>
                 <input 
                     type="text" 
                     name="card_title" 
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                     placeholder="Enter card title"
                 /> 
+                <label htmlFor="card_description" className="block text-sm font-medium text-gray-700 mb-2">Card Description</label>
+                <textarea
+                    name="card_description"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter card description"
+                />
+                <label htmlFor="card_source" className="block text-sm font-medium text-gray-700 mb-2">Card Source</label>
+                <select
+                    name="card_source"
+                    id="card_source"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                    <option value="">Select a source</option>
+                    <option value="Reddit">Reddit</option>
+                    <option value="Amazon">Amazon</option>
+                    <option value="YouTube">YouTube</option>
+                    <option value="Etsy">Etsy</option>
+                    <option value="OEM">OEM</option>
+                    <option value="Other">Other</option>
+                </select>
+                <label htmlFor="embed_code" className="block text-sm font-medium text-gray-700 mb-2">Embed Code</label>
+                <textarea
+                    name="embed_code"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter embed code"
+                />
+
             </div>
             <input type="hidden" name="parent_card_id" defaultValue={cardId} />
             <div className="mt-6">

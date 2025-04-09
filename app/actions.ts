@@ -18,8 +18,17 @@ export async function createCardAction(
     formData: FormData
 )
 {
-    const card_name = formData.get('card_name')
+    //Build the card id
+    const mfg_name = formData.get('mfg_name')
+    const model_number = formData.get('model_number')
+    const card_id = `${mfg_name}-${model_number}`
+
+
+    const card_title = formData.get('card_title')
     const parent_card_id = formData.get('parent_card_id')
+    const card_description = formData.get('card_description')
+    const card_source = formData.get('card_source')
+    const embed_code = formData.get('embed_code')
 
 
 
