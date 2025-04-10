@@ -24,11 +24,33 @@ export async function createCardAction(
     const card_id = `${mfg_name}-${model_number}`
 
 
+    const card_family = formData.get('card_family')
     const card_title = formData.get('card_title')
     const parent_card_id = formData.get('parent_card_id')
     const card_description = formData.get('card_description')
-    const card_source = formData.get('card_source')
+    const source = formData.get('source')
     const embed_code = formData.get('embed_code')
+
+
+    //Add card to supabase
+    const {data, error} = await supabase
+        .from('cards')
+        .insert({
+            card_id: card_id,
+            card_title: card_title,
+            card_body: card_description,
+            source: source,
+            card_family: card_family,
+            embed_code: embed_code
+        })
+
+//After you add a child card, add the association between parent and child.
+
+    if (error) {
+        console.error(error)
+        return {message: "Error creating card " + error.message}
+    }
+
 
 
 
