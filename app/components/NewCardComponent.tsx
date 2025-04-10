@@ -2,6 +2,7 @@
 import  {useActionState} from "react"
 import { useFormStatus } from "react-dom"
 import {createCardAction} from "@/app/actions"
+import Link from "next/link"
 
 const initialState = {message: ""};
 
@@ -39,7 +40,7 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                     placeholder="Enter model number"
                 />
-                <label htmlFor="card_family" className="block text-sm font-medium text-gray-700 mb-2">Card Family</label>
+                <label htmlFor="card_family" className="block text-sm font-medium text-gray-700 mb-2">Family</label>
                 <input 
                     type="text" 
                     name="card_family" 
@@ -47,7 +48,7 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                     placeholder="Enter Family"
                 />
 
-                <label htmlFor="card_title" className="block text-sm font-medium text-gray-700 mb-2">Card Name</label>
+                <label htmlFor="card_title" className="block text-sm font-medium text-gray-700 mb-2">Card Title</label>
                 <input 
                     type="text" 
                     name="card_title" 
@@ -61,7 +62,7 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                     placeholder="Enter card description"
                 />
                 
-                <label htmlFor="card_type" className="block text-sm font-medium text-gray-700 mb-2">Card Source</label>
+                <label htmlFor="card_type" className="block text-sm font-medium text-gray-700 mb-2">Type</label>
                 <select
                     name="card_type"
                     id="card_type"
@@ -70,11 +71,15 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                     <option value="">Select a type</option>
                     <option value="Product">Product</option>
                     <option value="Accessory">Accessory</option>
+                    <option value="Service">Organization</option>
+                    <option value="Event">Replacement Part</option>
+                    <option value="Event">Common Problem</option>
+
                     <option value="Other">Other</option>
                 </select>
                 
 
-                <label htmlFor="main_url" className="block text-sm font-medium text-gray-700 mb-2">Embed Code</label>
+                <label htmlFor="main_url" className="block text-sm font-medium text-gray-700 mb-2">URL</label>
                 <textarea
                     name="main_url"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -82,7 +87,7 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                 />
 
 
-                <label htmlFor="card_source" className="block text-sm font-medium text-gray-700 mb-2">Card Source</label>
+                <label htmlFor="card_source" className="block text-sm font-medium text-gray-700 mb-2">Source</label>
                 <select
                     name="card_source"
                     id="card_source"
@@ -96,7 +101,7 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                     <option value="OEM">OEM</option>
                     <option value="Other">Other</option>
                 </select>
-                <label htmlFor="embed_code" className="block text-sm font-medium text-gray-700 mb-2">Embed Code</label>
+                <label htmlFor="embed_code" className="block text-sm font-medium text-gray-700 mb-2">Embeded Code</label>
                 <textarea
                     name="embed_code"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -116,6 +121,11 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
       <p>Message should be above</p>
             </div>
         </form>
+        <div className="mt-4 text-center">
+            <Link href={`/products/${cardId}`} className="text-blue-600 hover:text-blue-800 underline font-medium">
+                View parent card
+            </Link>
+        </div>
         </div>
     );
 }
