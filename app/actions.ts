@@ -44,18 +44,25 @@ export async function createCardAction(
             embed_code: embed_code
         })
 
-//After you add a child card, add the association between parent and child.
-
     if (error) {
         console.error(error)
         return {message: "Error creating card " + error.message}
     }
 
+//After you add a child card, add the association between parent and child.
+const {data:association_data, error:association_error} = await supabase
+.from('card_parents')
+.insert({
+    parent_card: parent_card_id,
+    child_card: card_id
+})
+if (association_error) {
+    console.error(association_error)
+    return {message: "Error adding the relationship between parent and child " + association_error.message}
+}
 
-
-
-//For now, just send message.  Later will add to db.
-return {message: "Card created just now"}
+// Only return success message if both operations succeeded
+return {message: "Card created successfully"}
 
 }
 
