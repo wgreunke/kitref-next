@@ -23,17 +23,16 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
         <div className="bg-red-50">
             <p>This is the new card component. {cardId}</p>
             <br/>
-            <br/>
         <form action={formAction} className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto">
             <div className="mb-4">
-                <label htmlFor="mfg_name" className="block text-sm font-medium text-gray-700 mb-2">Mfg Name</label>
+                <label htmlFor="mfg_name" className="block text-sm font-medium text-gray-700 mb-2">Mfg Name: Use website name if not manufacturer.  Eg: Amazon, Etsy, etc.</label>
                 <input 
                     type="text" 
                     name="mfg_name" 
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                     placeholder="Enter mfg name"
                 />
-                <label htmlFor="model_number" className="block text-sm font-medium text-gray-700 mb-2">Model Number</label>
+                <label htmlFor="model_number" className="block text-sm font-medium text-gray-700 mb-2">Model Number: Use the id in the url if no model number.</label>
                 <input 
                     type="text" 
                     name="model_number" 
@@ -74,6 +73,14 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                     <option value="Other">Other</option>
                 </select>
                 
+
+                <label htmlFor="main_url" className="block text-sm font-medium text-gray-700 mb-2">Embed Code</label>
+                <textarea
+                    name="main_url"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter the link to the page. "
+                />
+
 
                 <label htmlFor="card_source" className="block text-sm font-medium text-gray-700 mb-2">Card Source</label>
                 <select
