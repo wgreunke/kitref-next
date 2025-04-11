@@ -21,13 +21,13 @@ export async function createCardAction(
     //Build the card id
     const mfg_name = formData.get('mfg_name')
     const model_number = formData.get('model_number')
-    const card_id = `${mfg_name}-${model_number}`
+    const card_id = `${mfg_name}_${model_number}`
 
 
     const card_family = formData.get('card_family')
     const card_title = formData.get('card_title')
     const parent_card_id = formData.get('parent_card_id')
-    const url = formData.get('url')
+    const main_url = formData.get('url')
     const card_type = formData.get('card_type')
     const card_description = formData.get('card_description')
     const source = formData.get('source')
@@ -43,6 +43,7 @@ export async function createCardAction(
             card_body: card_description,
             source: source,
             card_family: card_family,
+            main_url: main_url,
             embed_code: embed_code
         })
 
