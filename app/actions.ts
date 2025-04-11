@@ -40,7 +40,7 @@ export async function createCardAction(
         .insert({
             card_id: card_id,
             model_number: model_number,
-            mfg_name: mfg_name,
+            mfg: mfg_name,
             card_title: card_title,
             card_body: card_description,
             source: source,
