@@ -43,12 +43,16 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                     required
                 />
                 <label htmlFor="card_family" className="block text-sm font-medium text-gray-700 mb-2">Family</label>
-                <input 
-                    type="text" 
-                    name="card_family" 
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                    placeholder="Enter Family"
-                />
+                <select
+                    name="card_family"
+                    id="card_family"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                    <option value="Packout">Packout</option>
+                    <option value="M12">M12</option>
+                    <option value="M18">M18</option>
+                    <option value="M18/M12">M18/M12</option>
+                </select>
 
                 <label htmlFor="card_title" className="block text-sm font-medium text-gray-700 mb-2">Card Title</label>
                 <input 

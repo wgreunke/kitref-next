@@ -27,7 +27,7 @@ export async function createCardAction(
     const card_family = formData.get('card_family')
     const card_title = formData.get('card_title')
     const parent_card_id = formData.get('parent_card_id')
-    const main_url = formData.get('url')
+    const main_url = formData.get('main_url')
     const card_type = formData.get('card_type')
     const card_description = formData.get('card_description')
     const source = formData.get('source')
