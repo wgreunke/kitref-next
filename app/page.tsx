@@ -97,7 +97,7 @@ export default async function Home({
     .select('*')
     .eq('card_family', selectedFamily)
     .eq('mfg', 'Milwaukee')
-    .in('card_group', ['Organizer','Crate','Tool Box','Rolling']);
+    .in('card_group', ['Organizer','Crate','Tool Box','Rolling', 'Drawer']);
 
   const groupedByMfg = (filteredData || []).reduce((acc, card) => {
     const card_group = card.card_group || 'Other';
