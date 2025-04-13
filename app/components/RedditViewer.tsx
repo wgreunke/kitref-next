@@ -24,12 +24,20 @@ export default function RedditViewer()
         return baseLink;
     }
 
+
+    function getRedditSubreddit(link: string)
+    {
+        const subreddit = link.split('/')[3];
+        return subreddit;
+    }
+
  return (
         <div>
             <h1>Reddit Viewer</h1>
             <h2>{getRedditTitle(sampleEmbededLink)}</h2>
             <h3>{getRedditAuthor(sampleEmbededLink)}</h3>
             <h4>{getRedditBaseLink(sampleEmbededLink)}</h4>
+            
         </div>
     )
 }
