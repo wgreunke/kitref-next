@@ -1,5 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import Link from 'next/link'
+import RedditSimpleComponent from '@/app/components/RedditSimpleComponent'
+
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -81,24 +83,34 @@ if (child_cards_error) {
             <div className="grid gap-4">
               {child_cards.map((child) => (
                 <div key={child.child_card}>
-                  <Link 
-                    href={`/products/${child.child_card}`}
-                    className="flex items-center gap-4"
-                  >
-                   
+                  {child.source === "Reddit" ? (
                     <div>
-                      <h3 className="font-semibold text-lg text-red-700">
-                        {child.child_card}
-                      </h3>
-                      {child.model_number && (
-                        <p className="text-gray-600">Model: {child.model_number}</p>
-                      )}
+                    <h1>{child.card_title}</h1>
+                    <RedditSimpleComponent RedditEmbededLink={child.embed_code} />
                     </div>
-                  </Link>
-                  <p>Title: {child.card_title}</p>
-                  <p> {child.card_body}</p>
-
-
+                  ) : (
+                    <div>
+                      <h3>{child.name}</h3>
+                      <p>{child.description}</p>
+                      <Link 
+                        href={`/products/${child.child_card}`}
+                        className="flex items-center gap-4"
+                      >
+                        <div>
+                          <h3 className="font-semibold text-lg text-red-700">
+                            {child.child_card}
+                          </h3>
+                          {child.model_number && (
+                            <p className="text-gray-600">Model: {child.model_number}</p>
+                          )}
+                        </div>
+                      </Link>
+                      <p>Title: {child.card_title}</p>
+                      <p> {child.card_body}</p>
+                      <p>Source: {child.source}</p>
+                      <p>Embeded Code: {child.embed_code}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
