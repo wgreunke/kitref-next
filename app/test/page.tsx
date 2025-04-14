@@ -1,6 +1,7 @@
 //This page is used to test db connection.  
 import { createClient } from '../../utils/supabase/server'
 import Link from 'next/link'
+import RedditSimpleComponent from '../components/RedditSimpleComponent'
 
 export default async function TestPage() {
   const supabase = createClient()
@@ -16,7 +17,11 @@ export default async function TestPage() {
 
   return (
     <div>
-      <pre>{JSON.stringify(parents, null, 2)}</pre>
+      <h1>Test Page</h1>
+
+      {/*<pre>{JSON.stringify(parents, null, 2)}</pre>*/}
+      
+      <RedditSimpleComponent />
     </div>
   );
 }

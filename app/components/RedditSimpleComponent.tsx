@@ -1,5 +1,12 @@
 //This is a simple component that just strips out the javascipt from embeeded code.
 
+import Script from 'next/script'
+//Note to prevent cross-site scripting attacks, 
+//need to add some security measures. like Dompurify.
+
+
+
+
 export default function RedditSimpleComponent()
 {
 
@@ -16,10 +23,14 @@ function TextBeforeScript(embed: string)
     return (
         <div>
             <h1>Reddit Simple Component</h1>
-            <h2>{TextBeforeScript(sampleEmbededLink)}</h2>
+            <div 
+                dangerouslySetInnerHTML={{ __html: TextBeforeScript(sampleEmbededLink) }}
+            />
+            <Script 
+                src="https://embed.reddit.com/widgets.js"
+                strategy="afterInteractive"
+                async
+            />
         </div>
     )
 }
-
-
-
