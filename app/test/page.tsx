@@ -24,7 +24,7 @@ export default async function TestPage() {
 
       {/*<pre>{JSON.stringify(parents, null, 2)}</pre>*/}
       
-      <RedditSimpleComponent />
+      <RedditSimpleComponent RedditEmbededLink={sampleEmbededLink} />
     </div>
   );
 }
