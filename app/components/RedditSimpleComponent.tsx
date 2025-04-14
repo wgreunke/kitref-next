@@ -24,6 +24,7 @@ function TextBeforeScript(embed: string)
         <div>
             <h1>Reddit Simple Component</h1>
             <div 
+                style={{ width: '300px', margin: '0 auto' }}
                 dangerouslySetInnerHTML={{ __html: TextBeforeScript(sampleEmbededLink) }}
             />
             <Script 
