@@ -30,8 +30,7 @@ export default async function Page({  params,}: {
   if (error) {
     console.error('Error fetching card:', error.message)
     return <div>Error loading card</div>
-  }
-
+  } 
 
 
   const { data: child_cards, error: child_cards_error } = await supabase
