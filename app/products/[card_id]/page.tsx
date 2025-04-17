@@ -1,11 +1,18 @@
 import { createClient } from '@supabase/supabase-js'
 import Link from 'next/link'
 import RedditSimpleComponent from '@/app/components/RedditSimpleComponent'
+import Image from 'next/image'
 
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const supabase = createClient(supabaseUrl, supabaseKey)
+
+
+const { data: imageUrl } = await supabase.storage
+    .from('kitref-images')
+    .getPublicUrl('Milwaukee_48-22-8440.webp');
+
 
 const RunEmbedCode = ({ embedCode }: { embedCode: string }) => {
   return (
@@ -72,6 +79,21 @@ if (child_cards_error) {
             <p>Model: {card.model_number}</p>
             <p><Link className="text-blue-600 hover:text-blue-800 hover:underline"
             href={`${card.main_url}`} target="_blank" rel="noopener noreferrer">Link to page</Link></p>
+           
+
+     //show image
+     {imageUrl && (
+        <div className="mt-4">
+            <Image
+                src={imageUrl.publicUrl}
+                alt="Product Image"
+                width={300}
+                height={300}
+                className="rounded-lg shadow-md"
+                priority
+            />
+        </div>
+     )}
            </div>
         </div>
 
