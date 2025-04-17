@@ -97,6 +97,7 @@ export default async function Home({
     .select('*')
     .eq('card_family', selectedFamily)
     .eq('mfg', 'Milwaukee')
+    .eq('card_type', 'Product')
     .in('card_group', ['Organizer','Crate','Tool Box','Rolling', 'Drawer']);
 
   const groupedByMfg = (filteredData || []).reduce((acc, card) => {
@@ -137,39 +138,6 @@ export default async function Home({
       {/* Main content with sidebar */}
       <div className="flex flex-1">
         {/* Sidebar */}
-        <div className="w-64 p-4 border-r-2 border-red-700 min-h-screen">
-          <h4 className="text-2xl font-bold mb-4">Products</h4>
-          <div className="flex flex-col gap-2">
-            <Link 
-              href="/?family=M12" 
-              className={`text-blue-600 hover:underline ${selectedFamily === 'M12' ? 'font-bold' : ''}`}
-            >
-              M12
-            </Link>
-            <Link 
-              href="/?family=M18" 
-              className={`text-blue-600 hover:underline ${selectedFamily === 'M18' ? 'font-bold' : ''}`}
-            >
-              M18
-            </Link>
-            <Link 
-              href="/?family=Packout" 
-              className={`text-blue-600 hover:underline ${selectedFamily === 'Packout' ? 'font-bold' : ''}`}
-            >
-              Packout
-            </Link>
-            <Link 
-              href="/?family=M18 / M12" 
-              className={`text-blue-600 hover:underline ${selectedFamily === 'M18 / M12' ? 'font-bold' : ''}`}
-            >
-              M18/M12
-            </Link>
-          </div>
-          <br></br>
-          <hr className="border-red-700"></hr>
-          <br></br>
-          <Link href="https://kitref.streamlit.app/" className="text-blue-600 hover:underline">Add New Card</Link>
-        </div>
 
         {/* Main content */}
         <div className="flex-1 p-4">
@@ -194,10 +162,15 @@ export default async function Home({
                     </div>
                   ))}
               </div>
+              
             </div>
           ))}
+                <Link href="https://kitref.streamlit.app/" className="text-blue-600 hover:underline">Add New Card</Link>
+
         </div>
+      
       </div>
+      
     </div>
   );
 } 
