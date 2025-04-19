@@ -1,3 +1,5 @@
+//https://kodaschool.com/blog/next-js-and-supabase-how-to-store-and-serve-images
+
 import { createClient as createClientBase } from '@supabase/supabase-js';
 
 export const createClient = () => {
