@@ -71,36 +71,25 @@ if (child_cards_error) {
 
         {/* Product Details */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold mb-4">{card.card_title}</h1>
-         
-          <p className="mb-4">{card.card_body}</p>
-          <div className="space-y-2">
+          <p>{card.card_title}</p>
+         <br/>
+          <p>{card.card_body}</p>
+          
             <p>Manufacturer: {card.mfg}</p>
             <p>Model: {card.model_number}</p>
             <p><Link className="text-blue-600 hover:text-blue-800 hover:underline"
             href={`${card.main_url}`} target="_blank" rel="noopener noreferrer">Link to page</Link></p>
            
 
-     //show image
-     {imageUrl && (
-        <div className="mt-4">
-            <Image
-                src={imageUrl.publicUrl}
-                alt="Product Image"
-                width={300}
-                height={300}
-                className="rounded-lg shadow-md"
-                priority
-            />
-        </div>
-     )}
-           </div>
+         //show image
+     
+          
         </div>
 
         {/* Child Cards Section */}
         {child_cards && child_cards.length > 0 ? (
           <div className="mt-8">
-            <h2 className="text-xl font-bold mb-4">Related Products</h2>
+            <h2 className="text-xl font-bold mb-4">Accessories and Ideas</h2>
             <div className="grid gap-4">
               {child_cards.map((child) => (
                 <div key={child.child_card}>
@@ -113,23 +102,19 @@ if (child_cards_error) {
                     <div>
                       <h3>{child.name}</h3>
                       <p>{child.description}</p>
+                      
+                      
                       <Link 
                         href={`/products/${child.child_card}`}
                         className="flex items-center gap-4"
                       >
-                        <div>
-                          <h3 className="font-semibold text-lg text-red-700">
-                            {child.child_card}
-                          </h3>
-                          {child.model_number && (
-                            <p className="text-gray-600">Model: {child.model_number}</p>
-                          )}
-                        </div>
+                        <h3 className="font-semibold text-lg text-red-700">{child.card_title}</h3>
+                        <br/>
+                        <p> {child.card_body}</p>
+                        <p>Model: {child.model_number}</p> 
                       </Link>
-                      <p>Title: {child.card_title}</p>
-                      <p> {child.card_body}</p>
                       <p>Source: {child.source}</p>
-                      <p>Embeded Code: {child.embed_code}</p>
+                 
                     </div>
                   )}
                 </div>
