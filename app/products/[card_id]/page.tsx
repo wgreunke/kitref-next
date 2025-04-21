@@ -90,7 +90,7 @@ if (child_cards_error) {
         {child_cards && child_cards.length > 0 ? (
           <div className="mt-8">
             <h2 className="text-xl font-bold mb-4">Accessories and Ideas</h2>
-            <div className="grid gap-4">
+            <div>
               {child_cards.map((child) => (
                 <div key={child.child_card}>
                   {child.source === "Reddit" ? (
@@ -100,21 +100,19 @@ if (child_cards_error) {
                     </div>
                   ) : (
                     <div>
-                      <h3>{child.name}</h3>
-                      <p>{child.description}</p>
-                      
                       
                       <Link 
-                        href={`/products/${child.child_card}`}
-                        className="flex items-center gap-4"
-                      >
+                        href={`/products/${child.child_card}`}>
                         <h3 className="font-semibold text-lg text-red-700">{child.card_title}</h3>
-                        <br/>
-                        <p> {child.card_body}</p>
-                        <p>Model: {child.model_number}</p> 
+                        
                       </Link>
-                      <p>Source: {child.source}</p>
-                 
+                      <p> Body: {child.card_body}</p>
+                      <p> Model: {child.model_number}</p> 
+                      <Link href={child.main_url}>
+                      Go to Source: {child.source}
+                      </Link>
+                      <p>View Card</p>
+                    <br/>
                     </div>
                   )}
                 </div>
