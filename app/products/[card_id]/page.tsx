@@ -103,13 +103,13 @@ if (child_cards_error) {
                   ) : (
                     <div>
                       <div className="flex items-center space-x-4">
-                        <p className="font-bold">{child.source}</p>
+                        <p className="font-bold text-gray-500">{child.source}</p>
                         <Link 
                           href={`/products/${child.child_card}`}>
-                          <p className="font-semibold text-blue-500">View on KitRef</p>                        
+                          <p className="text-blue-500">View on KitRef</p>                        
                         </Link>
                       </div>
-                      <h3 className="font-semibold text-lg text-red-700">{child.card_title}</h3>
+                      <h3 className="font-semibold text-lg">{child.card_title}</h3>
                       <p>Image here</p>
 
                       <p> Body: {child.card_body}</p> 
@@ -122,7 +122,7 @@ if (child_cards_error) {
                     <br/>
                     </div>
                   )}
-                               <hr className="my-4"/>
+                               <hr className="my-4 border-gray-300"/>
                 </div>
               ))}
 
