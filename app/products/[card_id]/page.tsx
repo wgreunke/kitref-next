@@ -62,6 +62,8 @@ if (child_cards_error) {
       {/* Main Content Container */}
       <div className="container mx-auto p-4">
         {/* Back to Home Link */}
+        
+      
         <Link 
           href="/" 
           className="inline-block mb-4 text-blue-600 hover:text-blue-800 hover:underline"
@@ -120,7 +122,7 @@ if (child_cards_error) {
                     <br/>
                     </div>
                   )}
-                              <hr/>
+                               <hr className="my-4"/>
                 </div>
               ))}
 
