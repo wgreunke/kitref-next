@@ -100,23 +100,30 @@ if (child_cards_error) {
                     </div>
                   ) : (
                     <div>
-                      
+                      <div className="flex items-center space-x-4">
+                        <p className="font-bold">{child.source}</p>
+                        <Link 
+                          href={`/products/${child.child_card}`}>
+                          <p className="font-semibold text-blue-500">View on KitRef</p>                        
+                        </Link>
+                      </div>
+                      <h3 className="font-semibold text-lg text-red-700">{child.card_title}</h3>
+                      <p>Image here</p>
+
+                      <p> Body: {child.card_body}</p> 
                       <Link 
-                        href={`/products/${child.child_card}`}>
-                        <h3 className="font-semibold text-lg text-red-700">{child.card_title}</h3>
-                        
+                        href={child.main_url}
+                        className="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center"
+                      >
+                       <h3 className="font-semibold text-lg text-blue-500">Go to Source: {child.source}</h3>
                       </Link>
-                      <p> Body: {child.card_body}</p>
-                      <p> Model: {child.model_number}</p> 
-                      <Link href={child.main_url}>
-                      Go to Source: {child.source}
-                      </Link>
-                      <p>View Card</p>
                     <br/>
                     </div>
                   )}
+                              <hr/>
                 </div>
               ))}
+
             </div>
           </div>
         ) : (

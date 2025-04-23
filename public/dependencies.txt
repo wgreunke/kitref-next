@@ -1,0 +1,2 @@
+Libraries Needed:
+npm install @next/third-parties   //for google analytics
