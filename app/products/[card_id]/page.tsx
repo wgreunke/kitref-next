@@ -101,7 +101,7 @@ if (child_cards_error) {
                     <RedditSimpleComponent RedditEmbededLink={child.embed_code} />
                     </div>
                   ) : (
-                    <div>
+                    <div className="flex flex-col items-center">
                       <div className="flex items-center space-x-4">
                         <p className="font-bold text-gray-500">{child.source}</p>
                         <Link 
@@ -109,7 +109,7 @@ if (child_cards_error) {
                           <p className="text-blue-500">View on KitRef</p>                        
                         </Link>
                       </div>
-                      <h3 className="font-semibold text-lg">{child.card_title}</h3>
+                      <h3 className="font-semibold text-lg text-center mt-2 max-w-md">{child.card_title}</h3>
                       <p>Image here</p>
 
                       <p> Body: {child.card_body}</p> 

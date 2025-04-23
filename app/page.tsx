@@ -128,10 +128,14 @@ export default async function Home({
         </div>
 
         {/* Tagline bar */}
-        <div className="bg-white p-4 flex justify-center border-b">
+        <div className="bg-white p-4 flex justify-center">
           <p className="text-sm font-bold text-center max-w-md">
             Linking the Ecosystem of Milwaukee Tools, Storage and Accessories
           </p>
+        </div>
+        <div className="bg-white p-4 flex justify-center border-b">
+          
+          <p>KitRef helps you discover custom parts, 3D files, and practical tips to organize your tools and get the most out of your Milwaukee Packout system. Each solution is linked to Milwaukee’s official part numbers, so you can be confident it fits.</p>
         </div>
       </div>
 
