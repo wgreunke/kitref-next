@@ -73,14 +73,14 @@ if (child_cards_error) {
 
         {/* Product Details */}
         <div className="mb-8">
-          <p>{card.card_title}</p>
+          <h2 className="text-2xl font-bold text-gray-900">{card.card_title}</h2>
          <br/>
           <p>{card.card_body}</p>
           
             <p>Manufacturer: {card.mfg}</p>
             <p>Model: {card.model_number}</p>
             <p><Link className="text-blue-600 hover:text-blue-800 hover:underline"
-            href={`${card.main_url}`} target="_blank" rel="noopener noreferrer">Link to page</Link></p>
+            href={`${card.main_url}`} target="_blank" rel="noopener noreferrer">View product source</Link></p>
            
 
          //show image
@@ -88,7 +88,7 @@ if (child_cards_error) {
           
         </div>
 
-        {/* Child Cards Section */}
+        {/* ****************** Child Cards Section ****************** */}
         {child_cards && child_cards.length > 0 ? (
           <div className="mt-8">
             <h2 className="text-xl font-bold mb-4">Accessories and Ideas</h2>
@@ -97,7 +97,7 @@ if (child_cards_error) {
                 <div key={child.child_card}>
                   {child.source === "Reddit" ? (
                     <div>
-                    <h1>{child.card_title}</h1>
+                    <h3 className="font-semibold text-lg  mt-2 max-w-md">{child.card_title}</h3>
                     <RedditSimpleComponent RedditEmbededLink={child.embed_code} />
                     </div>
                   ) : (
