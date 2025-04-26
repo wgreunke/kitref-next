@@ -54,7 +54,7 @@ if (child_cards_error) {
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
       <div className="flex flex-col">
-        <div className="bg-red-700 text-white p-4 flex justify-center">
+        <div className="bg-red-700 text-white p-4 flex ">
           <h1 className="text-2xl font-bold">KitRef</h1>
         </div>
       </div>
@@ -101,22 +101,21 @@ if (child_cards_error) {
                     <RedditSimpleComponent RedditEmbededLink={child.embed_code} />
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center">
-                      <div className="flex items-center space-x-4">
+                    <div className="flex flex-col ">
+                      <div className="flex  space-x-4">
                         <p className="font-bold text-gray-500">{child.source}</p>
                         <Link 
                           href={`/products/${child.child_card}`}>
                           <p className="text-blue-500">View on KitRef</p>                        
                         </Link>
                       </div>
-                      <h3 className="font-semibold text-lg text-center mt-2 max-w-md">{child.card_title}</h3>
+                      <h3 className="font-semibold text-lg  mt-2 max-w-md">{child.card_title}</h3>
                       <p>Image here</p>
 
                       <p> Body: {child.card_body}</p> 
                       <Link 
                         href={child.main_url}
-                        className="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center"
-                      >
+                        className="text-blue-600 hover:text-blue-800 hover:underline inline-flex">
                        <h3 className="font-semibold text-lg text-blue-500">Go to Source: {child.source}</h3>
                       </Link>
                     <br/>
@@ -133,16 +132,11 @@ if (child_cards_error) {
             <p className="text-gray-600">No related products found</p>
           </div>
         )}
-
+       <Link className="text-blue-600 hover:text-blue-800 hover:underline" href={`/newcard/${card_id}`}>Add a child card.</Link>
+ 
       </div>
 
-        <Link className="text-blue-600 hover:text-blue-800 hover:underline" href={`/newcard/${card_id}`}>Add a child card.</Link>
         
-<p>This is the card id:</p>
-   <p></p>
-   <br/>
-   <p></p>
-   <p>{card_id}</p>
     </div>
   )
 }
