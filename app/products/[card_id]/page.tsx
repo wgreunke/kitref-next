@@ -88,10 +88,11 @@ if (child_cards_error) {
           
         </div>
 
-        {/* ****************** Child Cards Section ****************** */}
+        {/* ********************** Child Cards Section *************************** */}
         {child_cards && child_cards.length > 0 ? (
           <div className="mt-8">
-            <h2 className="text-xl font-bold mb-4">Accessories and Ideas</h2>
+            <h2 className="text-xl font-bold mb-4 text-center">Accessories and Ideas</h2>
+            <hr className="my-4 border-gray-300"/>
             <div>
               {child_cards.map((child) => (
                 <div key={child.child_card}>
@@ -106,13 +107,13 @@ if (child_cards_error) {
                         <p className="font-bold text-gray-500">{child.source}</p>
                         <Link 
                           href={`/products/${child.child_card}`}>
-                          <p className="text-blue-500">View on KitRef</p>                        
+                          <p className="text-blue-500">Edit</p>                        
                         </Link>
                       </div>
-                      <h3 className="font-semibold text-lg  mt-2 max-w-md">{child.card_title}</h3>
+                      <h3 className="font-semibold text-lg  ">{child.card_title}</h3>
                       <p>Image here</p>
 
-                      <p> Body: {child.card_body}</p> 
+                      <p>{child.card_body}</p> 
                       <Link 
                         href={child.main_url}
                         className="text-blue-600 hover:text-blue-800 hover:underline inline-flex">
