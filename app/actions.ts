@@ -71,3 +71,23 @@ return {message: "Card created successfully"}
 
 }
 
+
+
+//This function creates a blank card and then adds that card to a parent card.
+//It returns a card ID that can used to add data in a new card form.
+export async function createNewCardIDwithParent(formData: FormData) {
+    const parentCardID = formData.get('parentCardID') as string
+    //Convert the timstamep to 32 hexidecimal characters
+    const card_id = new Date().getTime().toString()
+      
+    //Add the card to the parent card
+    const {data, error} = await supabase
+        .from('cards')
+        .insert({
+            card_id: card_id,
+            active_card: false,
+        })
+      
+    console.log(data)
+}
+

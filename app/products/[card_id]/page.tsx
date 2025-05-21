@@ -2,17 +2,21 @@ import { createClient } from '@supabase/supabase-js'
 import Link from 'next/link'
 import RedditSimpleComponent from '@/app/components/RedditSimpleComponent'
 import Image from 'next/image'
+import { createNewCardIDwithParent } from '@/app/actions'
 
+// Create a single instance of the Supabase client
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-const supabase = createClient(supabaseUrl, supabaseKey)
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Missing Supabase environment variables')
+}
 
-
-const { data: imageUrl } = await supabase.storage
-    .from('kitref-images')
-    .getPublicUrl('Milwaukee_48-22-8440.webp');
-
+const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: {
+    persistSession: false
+  }
+})
 
 const RunEmbedCode = ({ embedCode }: { embedCode: string }) => {
   return (
@@ -133,7 +137,15 @@ if (child_cards_error) {
           </div>
         )}
        <Link className="text-blue-600 hover:text-blue-800 hover:underline" href={`/newcard/${card_id}`}>Add a child card.</Link>
- 
+        <form action={createNewCardIDwithParent} className="inline-block">
+            <input type="hidden" name="parentCardID" value={card_id} />
+            <button 
+                type="submit" 
+                className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200"
+            >
+                Create a new card
+            </button>
+        </form>
       </div>
 
         
