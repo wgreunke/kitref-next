@@ -38,7 +38,7 @@ export async function createCardAction(
 
     //Add card to supabase
     //Set the card to active
- /*   const {data, error} = await supabase
+    const {data, error} = await supabase
         .from('cards')
         .update({
             model_number: model_number,
@@ -51,16 +51,10 @@ export async function createCardAction(
             embed_code: embed_code,
             active_card: true
         })
-        //.eq('card_id', card_id.toString())
-        .eq('card_id', '1747854451403')
-*/
+        .eq('card_id', card_id.toString())
+        
 
- const {data, error} = await supabase
-        .from('cards')
-        .update({
-            model_number: "test model",
-        })
-        .eq('card_id', 'a17')
+
         console.log('Data:', data)
     if (error) {
         console.error('Error updating card:', error)
