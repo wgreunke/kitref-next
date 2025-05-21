@@ -58,10 +58,10 @@ export async function createCardAction(
  const {data, error} = await supabase
         .from('cards')
         .update({
-            model_numbers: "test model",
+            model_number: "test model",
         })
         .eq('card_id', 'a17')
-
+        console.log('Data:', data)
     if (error) {
         console.error('Error updating card:', error)
         return {message: "Error creating card " + error.message}
