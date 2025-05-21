@@ -36,6 +36,11 @@ export async function createCardAction(
     console.log('Updating card with ID:', card_id, 'Type:', typeof card_id)
     console.log('Model number:', model_number)
 
+    //Check if card_id is null or undefined.  If so, set it to 9999  
+    if (card_id === null || card_id === undefined) {
+        card_id = "9999"
+    }
+
     //Add card to supabase
     //Set the card to active
     const {data, error} = await supabase
