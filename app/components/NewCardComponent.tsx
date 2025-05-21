@@ -16,15 +16,21 @@ function SubmitButton() {
         Add a new card
     </button>
 }
+//The card id is what you are updating, the parent is allready set.
 
-export function NewCardComponent({ cardId }: { cardId: string }) {
+export function NewCardComponent({ card_id  }: {  card_id: string }) {
     const [state, formAction] = useActionState(createCardAction, initialState)
+    
+    console.log('NewCardComponent rendered with card_id:', card_id)
 
     return (
         <div className="bg-red-50">
-            <p>This is the new card component. {cardId}</p>
+            <p>Enter data for new card {card_id}</p>
             <br/>
-        <form action={formAction} className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto">
+        <form action={async (formData) => {
+            console.log('Form submitted with card_id:', formData.get('card_id'))
+            return formAction(formData)
+        }} className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto">
             <div className="mb-4">
                 <label htmlFor="mfg_name" className="block text-sm font-medium text-gray-700 mb-2">Mfg Name: Use website name if not manufacturer.  Eg: Amazon, Etsy, etc.</label>
                 <input 
@@ -116,9 +122,8 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter embed code"
                 />
-
+                <input type="hidden" name="card_id" defaultValue={card_id} />
             </div>
-            <input type="hidden" name="parent_card_id" defaultValue={cardId} />
             <div className="mt-6">
                 <SubmitButton />
                 <p aria-live="polite" className="sr-only" role="status">
@@ -131,7 +136,7 @@ export function NewCardComponent({ cardId }: { cardId: string }) {
             </div>
         </form>
         <div className="mt-4 text-center">
-            <Link href={`/products/${cardId}`} className="text-blue-600 hover:text-blue-800 underline font-medium">
+            <Link href={`/products/${card_id}`} className="text-blue-600 hover:text-blue-800 underline font-medium">
                 View parent card
             </Link>
         </div>

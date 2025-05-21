@@ -2,6 +2,7 @@
 'use server'
 import {revalidatePath} from "next/cache"
 import { createClient } from '@supabase/supabase-js'
+import { redirect } from 'next/navigation'
 
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -12,33 +13,34 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 //Try out zod for this.
 //https://github.com/vercel/next.js/blob/canary/examples/next-forms/app/actions.ts
 
-
+//When this function is called, the card id is already created.
+//This just updates the blank card with the data.
+//Do not need to worry about parents becasue they have allready been created and do not
 export async function createCardAction(
     prevState: {message: string},
     formData: FormData
 )
 {
     //Build the card id
+    const card_id = formData.get('card_id') as string
     const mfg_name = formData.get('mfg_name')
     const model_number = formData.get('model_number')
-    const card_id = `${mfg_name}_${model_number}`
-
-
     const card_family = formData.get('card_family')
     const card_title = formData.get('card_title')
-    const parent_card_id = formData.get('parent_card_id')
     const main_url = formData.get('main_url')
     const card_type = formData.get('card_type')
     const card_description = formData.get('card_description')
     const source = formData.get('source')
     const embed_code = formData.get('embed_code')
-
+    
+    console.log('Updating card with ID:', card_id, 'Type:', typeof card_id)
+    console.log('Model number:', model_number)
 
     //Add card to supabase
-    const {data, error} = await supabase
+    //Set the card to active
+ /*   const {data, error} = await supabase
         .from('cards')
-        .insert({
-            card_id: card_id,
+        .update({
             model_number: model_number,
             mfg: mfg_name,
             card_title: card_title,
@@ -46,25 +48,25 @@ export async function createCardAction(
             source: source,
             card_family: card_family,
             main_url: main_url,
-            embed_code: embed_code
+            embed_code: embed_code,
+            active_card: true
         })
+        //.eq('card_id', card_id.toString())
+        .eq('card_id', '1747854451403')
+*/
+
+ const {data, error} = await supabase
+        .from('cards')
+        .update({
+            model_numbers: "test model",
+        })
+        .eq('card_id', 'a17')
 
     if (error) {
-        console.error(error)
+        console.error('Error updating card:', error)
         return {message: "Error creating card " + error.message}
     }
 
-//After you add a child card, add the association between parent and child.
-const {data:association_data, error:association_error} = await supabase
-.from('card_parents')
-.insert({
-    parent_card: parent_card_id,
-    child_card: card_id
-})
-if (association_error) {
-    console.error(association_error)
-    return {message: "Error adding the relationship between parent and child " + association_error.message}
-}
 
 // Only return success message if both operations succeeded
 return {message: "Card created successfully"}
@@ -88,6 +90,28 @@ export async function createNewCardIDwithParent(formData: FormData) {
             active_card: false,
         })
       
-    console.log(data)
+    if (error) {
+        console.error(error)
+        return { message: "Error creating card: " + error.message }
+    }
+
+
+    /*
+//After you add a child card, add the association between parent and child.
+const {data:association_data, error:association_error} = await supabase
+.from('card_parents')
+.insert({
+    parent_card: parent_card_id,
+    child_card: card_id
+})
+if (association_error) {
+    console.error(association_error)
+    return {message: "Error adding the relationship between parent and child " + association_error.message}
+}
+*/
+
+
+
+    redirect(`/newcard/${card_id}`)
 }
 

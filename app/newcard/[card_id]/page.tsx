@@ -7,24 +7,20 @@
 import { createClient } from '@supabase/supabase-js'
 import { NewCardComponent } from "../../components/NewCardComponent"
 
-
-
 const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-
 // Ensure this is a Server Component
-export default async function NewCard({ params, }: {
-    params: Promise <{card_id: string}>
-})
-{
+export default async function NewCard({ params }: {
+    params: Promise<{ card_id: string }>
+}) {
     const { card_id } = await params;
+    
     return (
         <div>
-            <p>Card ID: {card_id}</p>
-            <NewCardComponent cardId={card_id} />
+            <NewCardComponent card_id={card_id} />
         </div>
     );
 }
