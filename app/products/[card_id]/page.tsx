@@ -137,7 +137,6 @@ if (child_cards_error) {
             <p className="text-gray-600">No related products found</p>
           </div>
         )}
-       <Link className="text-blue-600 hover:text-blue-800 hover:underline" href={`/newcard/${card_id}`}>Add a child card.</Link>
         <form action={createNewCardIDwithParent} className="inline-block">
             <input type="hidden" name="parentCardID" value={card_id} />
             <button 

@@ -38,7 +38,7 @@ export async function createCardAction(
 
     //Check if card_id is null or undefined.  If so, set it to 9999  
     if (card_id === null || card_id === undefined) {
-        card_id = "9999"
+        console.log('Card ID is null or undefined')
     }
 
     //Add card to supabase
