@@ -16,7 +16,7 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 //When this function is called, the card id is already created.
 //This just updates the blank card with the data.
 //Do not need to worry about parents becasue they have allready been created and do not
-export async function createCardAction(
+export async function updateNewCardAction(
     prevState: {message: string},
     formData: FormData
 )
@@ -66,10 +66,8 @@ export async function createCardAction(
         return {message: "Error creating card " + error.message}
     }
 
-
-// Only return success message if both operations succeeded
-return {message: "Card created successfully"}
-
+    //When the card is updated, redirect to the product page.
+    redirect(`/products/${card_id}`)
 }
 
 
@@ -88,29 +86,51 @@ export async function createNewCardIDwithParent(formData: FormData) {
             card_id: card_id,
             active_card: false,
         })
-      
-    if (error) {
-        console.error(error)
-        return 
-    }
+
+        if (error) {
+            console.error(error)
+            return 
+        }
+    
+
+        //After you add a child card, add the association between parent and child.
+    const {data:association_data, error:association_error} = await supabase
+    .from('card_parents')
+    .insert({
+        parent_card: parentCardID,
+        child_card: card_id
+    })
 
 
-    /*
-//After you add a child card, add the association between parent and child.
-const {data:association_data, error:association_error} = await supabase
-.from('card_parents')
-.insert({
-    parent_card: parent_card_id,
-    child_card: card_id
-})
-if (association_error) {
-    console.error(association_error)
-    return {message: "Error adding the relationship between parent and child " + association_error.message}
-}
-*/
+
+
+
 
 
 
     redirect(`/newcard/${card_id}`)
+}
+
+export async function getParentCards(card_id: string) {
+    const { data, error } = await supabase
+        .from('card_parents')
+        .select(`
+            parent_card,
+            cards!parent_card (
+                card_id,
+                card_title,
+                card_body,
+                mfg,
+                model_number
+            )
+        `)
+        .eq('child_card', card_id)
+
+    if (error) {
+        console.error('Error fetching parent cards:', error)
+        return { error: error.message }
+    }
+
+    return { data }
 }
 

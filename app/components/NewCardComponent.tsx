@@ -1,7 +1,7 @@
 "use client"
 import  {useActionState} from "react"
 import { useFormStatus } from "react-dom"
-import {createCardAction} from "@/app/actions"
+import {updateNewCardAction} from "@/app/actions"
 import Link from "next/link"
 
 const initialState = {message: ""};
@@ -19,7 +19,7 @@ function SubmitButton() {
 //The card id is what you are updating, the parent is allready set.
 
 export function NewCardComponent({ card_id  }: {  card_id: string }) {
-    const [state, formAction] = useActionState(createCardAction, initialState)
+    const [state, formAction] = useActionState(updateNewCardAction, initialState)
     
     console.log('NewCardComponent rendered with card_id:', card_id)
 

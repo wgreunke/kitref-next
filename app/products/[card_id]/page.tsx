@@ -43,7 +43,17 @@ export default async function Page({  params,}: {
     return <div>Error loading card</div>
   } 
 
+//Get all the parents of the card
+const { data: parents, error: parents_error } = await supabase
+  .from('card_parents')
+  .select('*')
+  .eq('child_card', card_id);
 
+if (parents_error) {
+  return <div>Error loading parents: {parents_error.message}</div>;
+}
+
+//Get all the child cards of the card
   const { data: child_cards, error: child_cards_error } = await supabase
   .from('child_cards')
   .select('*')
@@ -143,9 +153,21 @@ if (child_cards_error) {
                 type="submit" 
                 className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200"
             >
-                Create a new card
+                Create a new child card
             </button>
         </form>
+
+<br/>
+<p>Parents:</p>
+{parents.map((parent) => (
+  <div key={parent.parent_card}>
+    <Link href={`/products/${parent.parent_card}`}>
+      <p className="text-blue-600 hover:text-blue-800 hover:underline">{parent.parent_card}</p>
+    </Link>
+  </div>
+))}
+
+
       </div>
 
         
