@@ -91,7 +91,7 @@ export async function createNewCardIDwithParent(formData: FormData) {
       
     if (error) {
         console.error(error)
-        return { message: "Error creating card: " + error.message }
+        return 
     }
 
 
