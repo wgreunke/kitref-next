@@ -1,7 +1,9 @@
 import Link from 'next/link'
 //Connect to supabase
 import { createClient } from '../utils/supabase/server'
- 
+import Image from 'next/image';
+
+
 //const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 //const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 //const supabase = createClient(supabaseUrl, supabaseKey)
@@ -109,6 +111,9 @@ export default async function Home({
     return acc;
   }, {} as Record<string, typeof filteredData>);
 
+
+
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Top bars */}
@@ -163,6 +168,11 @@ export default async function Home({
                       >
                         {card.card_title}
                       </Link>
+                      {/* image - This line when you have a URL.  Use the image from supabase storage */}
+                      {/*<img src={card.main_card_image} alt={card.card_title} className="w-16 h-16" />*/}
+                      <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${card.main_card_image}`} alt={card.card_title} width={100} height={100} />
+      
+
                     </div>
                   ))}
               </div>
