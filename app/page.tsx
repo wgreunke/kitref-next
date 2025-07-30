@@ -159,19 +159,32 @@ export default async function Home({
                   .sort((a, b) => (a.card_title || '').localeCompare(b.card_title || ''))
                   .map(card => (
                     <div key={card.card_id} className="mb-2">
-                      {card.model_number && (
-                        <span className="mr-2">{card.model_number}:</span>
-                      )}
+                      
+                      <div  style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '20px',
+            padding: '20px',
+            border: '1px solid #ddd',
+            borderRadius: '8px',
+            margin: '20px 0',
+            backgroundColor: '#f9f9f9'
+        }}>
+     <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${card.main_card_image}`} alt={card.card_title} width={100} height={100} />
+                      <div>
+                      <p>{card.model_number}</p>
+                      
                       <Link 
                         href={`/products/${card.card_id}`}
                         className="text-blue-600 hover:underline"
                       >
                         {card.card_title}
                       </Link>
+                      </div>
                       {/* image - This line when you have a URL.  Use the image from supabase storage */}
                       {/*<img src={card.main_card_image} alt={card.card_title} className="w-16 h-16" />*/}
-                      <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${card.main_card_image}`} alt={card.card_title} width={100} height={100} />
-      
+                 
+      </div>
 
                     </div>
                   ))}
