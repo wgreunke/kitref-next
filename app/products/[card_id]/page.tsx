@@ -64,6 +64,8 @@ if (child_cards_error) {
 }
 
 
+//***********************  Return ******************************* */
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
@@ -89,6 +91,8 @@ if (child_cards_error) {
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900">{card.card_title}</h2>
          <br/>
+         <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${card.main_card_image}`} alt={card.card_title} width={100} height={100} />
+                     
           <p>{card.card_body}</p>
           
             <p>Manufacturer: {card.mfg}</p>

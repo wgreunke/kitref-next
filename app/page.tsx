@@ -181,8 +181,6 @@ export default async function Home({
                         {card.card_title}
                       </Link>
                       </div>
-                      {/* image - This line when you have a URL.  Use the image from supabase storage */}
-                      {/*<img src={card.main_card_image} alt={card.card_title} className="w-16 h-16" />*/}
                  
                       </div>
 

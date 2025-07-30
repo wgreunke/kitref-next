@@ -68,9 +68,9 @@ export default function RedditSimpleComponent({ RedditEmbededLink }: { RedditEmb
                     ref={embedContainerRef}
                     style={{ 
                         width: '100%', 
-                        maxWidth: '650px', 
+                        maxWidth: '400px', 
                         margin: '0 auto',
-                        minHeight: '200px' 
+                        minHeight: '100px' 
                     }}
                     dangerouslySetInnerHTML={{ __html: embeddedLink }}
                 />
