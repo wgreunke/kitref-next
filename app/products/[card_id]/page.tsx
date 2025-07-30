@@ -91,7 +91,7 @@ if (child_cards_error) {
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900">{card.card_title}</h2>
          <br/>
-         <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${card.main_card_image}`} alt={card.card_title} width={100} height={100} />
+         <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${card.main_card_image}`} alt={card.card_title} width={300} height={300} />
                      
           <p>{card.card_body}</p>
           
@@ -101,7 +101,7 @@ if (child_cards_error) {
             href={`${card.main_url}`} target="_blank" rel="noopener noreferrer">View product source</Link></p>
            
 
-         //show image
+        
      
           
         </div>
