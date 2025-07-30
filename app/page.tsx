@@ -161,16 +161,16 @@ export default async function Home({
                     <div key={card.card_id} className="mb-2">
                       
                       <div  style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '20px',
-            padding: '20px',
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            margin: '20px 0',
-            backgroundColor: '#f9f9f9'
-        }}>
-     <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${card.main_card_image}`} alt={card.card_title} width={100} height={100} />
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '20px',
+                          padding: '20px',
+                          border: '1px solid #ddd',
+                          borderRadius: '8px',
+                          margin: '20px 0',
+                          backgroundColor: '#f9f9f9'
+                      }}>
+                        <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${card.main_card_image}`} alt={card.card_title} width={100} height={100} />
                       <div>
                       <p>{card.model_number}</p>
                       
@@ -184,7 +184,7 @@ export default async function Home({
                       {/* image - This line when you have a URL.  Use the image from supabase storage */}
                       {/*<img src={card.main_card_image} alt={card.card_title} className="w-16 h-16" />*/}
                  
-      </div>
+                      </div>
 
                     </div>
                   ))}
