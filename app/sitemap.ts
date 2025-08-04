@@ -34,13 +34,13 @@ const lastModified = "2025-08-04T22:12:00.000Z"
     {
       url: 'https://www.kitref.com',
       lastModified: lastModified,
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 1,
     },
     {
       url: 'https://www.kitref.com/about',
       lastModified: lastModified,
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
    
@@ -49,7 +49,7 @@ const lastModified = "2025-08-04T22:12:00.000Z"
     ...(filteredData || []).map((card) => ({
       url: `https://www.kitref.com/products/${card.card_id}`,
       lastModified: lastModified,
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.5,
     })),
   ]
