@@ -57,7 +57,8 @@ if (parents_error) {
   const { data: child_cards, error: child_cards_error } = await supabase
   .from('child_cards')
   .select('*')
-  .eq('parent_card', card_id);
+  .eq('parent_card', card_id)
+  .eq('active_card', "TRUE");
 
 if (child_cards_error) {
   return <div>Error loading parents: {child_cards_error.message}</div>;
@@ -70,8 +71,20 @@ if (child_cards_error) {
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
       <div className="flex flex-col">
-        <div className="bg-red-700 text-white p-4 flex ">
+        <div className="bg-red-700 text-white p-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">KitRef</h1>
+          <div className="flex items-center space-x-4">
+            {/*<a href="/login" className="text-white hover:text-gray-300">Login</a>*/}
+            <form action={createNewCardIDwithParent} className="inline-block">
+                <input type="hidden" name="parentCardID" value={card_id} />
+                <button 
+                    type="submit" 
+                    className="px-4 py-2 bg-red-700 text-white rounded-md hover:bg-blue-700 transition-colors duration-200"
+                >
+                    New Child Card
+                </button>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -132,11 +145,13 @@ if (child_cards_error) {
                       <p>Image here</p>
 
                       <p>{child.card_body}</p> 
-                      <Link 
-                        href={child.main_url}
-                        className="text-blue-600 hover:text-blue-800 hover:underline inline-flex">
-                       <h3 className="font-semibold text-lg text-blue-500">Go to Source: {child.source}</h3>
-                      </Link>
+                      {child.main_url && (
+                        <Link 
+                          href={child.main_url}
+                          className="text-blue-600 hover:text-blue-800 hover:underline inline-flex">
+                         <h3 className="font-semibold text-lg text-blue-500">Go to Source: {child.source}</h3>
+                        </Link>
+                      )}
                     <br/>
                     </div>
                   )}
