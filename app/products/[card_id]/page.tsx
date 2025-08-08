@@ -142,9 +142,8 @@ if (child_cards_error) {
                         </Link>
                       </div>
                       <h3 className="font-semibold text-lg  ">{child.card_title}</h3>
-                      <p>Image here</p>
-
-                      <p>{child.card_body}</p> 
+                      <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${child.main_card_image}`} alt={child.card_title || 'Product image'} width={100} height={100} />
+                      <p dangerouslySetInnerHTML={{ __html: child.card_body?.split('\n').slice(0, 5).join('<br>') || '' }}></p> 
                       {child.main_url && (
                         <Link 
                           href={child.main_url}
