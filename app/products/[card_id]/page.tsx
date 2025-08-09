@@ -143,7 +143,7 @@ if (child_cards_error) {
                       </div>
                       <h3 className="font-semibold text-lg  ">{child.card_title}</h3>
                       <div className="flex gap-4 items-start">
-                        <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${child.main_card_image}`} alt={child.card_title || 'Product image'} width={120} height={120}  className="flex-shrink-0" />
+                        <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${child.main_card_image}`} alt={ '.'} width={120} height={120}  className="flex-shrink-0" />
                         <div>
                           <p dangerouslySetInnerHTML={{ __html: child.card_body?.split('\n').slice(0, 5).join('<br>') || '' }}></p> 
                           {child.main_url && (
