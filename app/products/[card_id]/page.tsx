@@ -142,16 +142,19 @@ if (child_cards_error) {
                         </Link>
                       </div>
                       <h3 className="font-semibold text-lg  ">{child.card_title}</h3>
-                      <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${child.main_card_image}`} alt={child.card_title || 'Product image'} width={100} height={100} />
-                      <p dangerouslySetInnerHTML={{ __html: child.card_body?.split('\n').slice(0, 5).join('<br>') || '' }}></p> 
-                      {child.main_url && (
-                        <Link 
-                          href={child.main_url}
-                          className="text-blue-600 hover:text-blue-800 hover:underline inline-flex">
-                         <h3 className="font-semibold text-lg text-blue-500">Go to Source: {child.source}</h3>
-                        </Link>
-                      )}
-                    <br/>
+                      <div className="flex gap-4 items-start">
+                        <Image src={`https://mavawegzbegjydapzueh.supabase.co/storage/v1/object/public/kitref-images-p/${child.main_card_image}`} alt={child.card_title || 'Product image'} width={120} height={120}  className="flex-shrink-0" />
+                        <div>
+                          <p dangerouslySetInnerHTML={{ __html: child.card_body?.split('\n').slice(0, 5).join('<br>') || '' }}></p> 
+                          {child.main_url && (
+                            <Link 
+                              href={child.main_url}
+                              className="text-blue-600 hover:text-blue-800 hover:underline inline-flex">
+                             <h3 className="font-semibold text-lg text-blue-500">Go to Source: {child.source}</h3>
+                            </Link>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   )}
                                <hr className="my-4 border-gray-300"/>
