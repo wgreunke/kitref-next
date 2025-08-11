@@ -190,7 +190,8 @@ export default async function Home({
               
             </div>
           ))}
-                <Link href="https://kitref.streamlit.app/" className="text-blue-600 hover:underline">Add New Card</Link>
+          {/*      <Link href="https://kitref.streamlit.app/" className="text-blue-600 hover:underline">Add New Card</Link> */}
+
 
         </div>
       
